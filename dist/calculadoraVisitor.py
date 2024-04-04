@@ -64,10 +64,5 @@ class calculadoraVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by calculadoraParser#unaryExpr.
-    def visitUnaryExpr(self, ctx:calculadoraParser.UnaryExprContext):
-        return self.visitChildren(ctx)
-
-
 
 del calculadoraParser

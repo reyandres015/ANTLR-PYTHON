@@ -60,7 +60,7 @@ class EvalVisitor(calculadoraVisitor):
             return False
 
     def visitUnary(self, ctx):
-        if ctx.getChild(0).getText() == 'not':
+        if ctx.getChild(0).getText() == '!':
             return not self.visit(ctx.expr())
         elif ctx.getChild(0).getText() == '-':
             return -self.visit(ctx.expr())

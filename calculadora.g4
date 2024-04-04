@@ -7,7 +7,7 @@ stat:   expr NEWLINE                # printExpr
     |   NEWLINE                     # blank
     ;
 
-expr:   'not' expr                    # unary
+expr:   ('!'+|'-') expr               # unary
     |   expr op=('*'|'/') expr      # MulDiv
     |   expr op=('+'|'-') expr      # AddSub
     |   FLOAT                       # float
@@ -16,7 +16,7 @@ expr:   'not' expr                    # unary
     |   '(' expr ')'                # parens
     ;
 
-unaryExpr: 'not ';
+NOT: '!';
 
 MUL :   '*' ; // Asigna un nombre de token a '*' utilizado anteriormente en la gramática
 DIV :   '/' ;
