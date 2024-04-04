@@ -35,9 +35,9 @@ class EvalVisitor(calculadoraVisitor):
         left = self.visit(ctx.expr(0))
         right = self.visit(ctx.expr(1))
         if ctx.op.type == calculadoraParser.ADD:
-            return left + right
+            return right + left
         else:
-            return left - right
+            return right - left
 
     def visitInt(self, ctx):
         return int(ctx.INT().getText())
