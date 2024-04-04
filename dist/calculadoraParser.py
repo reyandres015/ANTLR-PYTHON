@@ -14,7 +14,7 @@ def serializedATN():
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,21,8,1,1,2,1,2,4,2,25,8,2,11,
         2,12,2,26,1,2,3,2,30,8,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,40,
         8,2,1,2,1,2,1,2,1,2,1,2,1,2,5,2,48,8,2,10,2,12,2,51,9,2,1,2,0,1,
-        4,3,0,2,4,0,2,1,0,5,6,1,0,7,8,60,0,7,1,0,0,0,2,20,1,0,0,0,4,39,1,
+        4,3,0,2,4,0,2,1,0,7,8,1,0,5,6,60,0,7,1,0,0,0,2,20,1,0,0,0,4,39,1,
         0,0,0,6,8,3,2,1,0,7,6,1,0,0,0,8,9,1,0,0,0,9,7,1,0,0,0,9,10,1,0,0,
         0,10,1,1,0,0,0,11,12,3,4,2,0,12,13,5,13,0,0,13,21,1,0,0,0,14,15,
         5,10,0,0,15,16,5,1,0,0,16,17,3,4,2,0,17,18,5,13,0,0,18,21,1,0,0,
@@ -326,39 +326,6 @@ class calculadoraParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
-    class MulDivContext(ExprContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a calculadoraParser.ExprContext
-            super().__init__(parser)
-            self.op = None # Token
-            self.copyFrom(ctx)
-
-        def expr(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(calculadoraParser.ExprContext)
-            else:
-                return self.getTypedRuleContext(calculadoraParser.ExprContext,i)
-
-        def MUL(self):
-            return self.getToken(calculadoraParser.MUL, 0)
-        def DIV(self):
-            return self.getToken(calculadoraParser.DIV, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMulDiv" ):
-                listener.enterMulDiv(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMulDiv" ):
-                listener.exitMulDiv(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitMulDiv" ):
-                return visitor.visitMulDiv(self)
-            else:
-                return visitor.visitChildren(self)
-
-
     class AddSubContext(ExprContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a calculadoraParser.ExprContext
@@ -388,6 +355,39 @@ class calculadoraParser ( Parser ):
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitAddSub" ):
                 return visitor.visitAddSub(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class MulDivContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a calculadoraParser.ExprContext
+            super().__init__(parser)
+            self.op = None # Token
+            self.copyFrom(ctx)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(calculadoraParser.ExprContext)
+            else:
+                return self.getTypedRuleContext(calculadoraParser.ExprContext,i)
+
+        def MUL(self):
+            return self.getToken(calculadoraParser.MUL, 0)
+        def DIV(self):
+            return self.getToken(calculadoraParser.DIV, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMulDiv" ):
+                listener.enterMulDiv(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMulDiv" ):
+                listener.exitMulDiv(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMulDiv" ):
+                return visitor.visitMulDiv(self)
             else:
                 return visitor.visitChildren(self)
 
@@ -592,7 +592,7 @@ class calculadoraParser ( Parser ):
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
                     if la_ == 1:
-                        localctx = calculadoraParser.MulDivContext(self, calculadoraParser.ExprContext(self, _parentctx, _parentState))
+                        localctx = calculadoraParser.AddSubContext(self, calculadoraParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                         self.state = 41
                         if not self.precpred(self._ctx, 6):
@@ -601,7 +601,7 @@ class calculadoraParser ( Parser ):
                         self.state = 42
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not(_la==5 or _la==6):
+                        if not(_la==7 or _la==8):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
@@ -611,7 +611,7 @@ class calculadoraParser ( Parser ):
                         pass
 
                     elif la_ == 2:
-                        localctx = calculadoraParser.AddSubContext(self, calculadoraParser.ExprContext(self, _parentctx, _parentState))
+                        localctx = calculadoraParser.MulDivContext(self, calculadoraParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                         self.state = 44
                         if not self.precpred(self._ctx, 5):
@@ -620,7 +620,7 @@ class calculadoraParser ( Parser ):
                         self.state = 45
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not(_la==7 or _la==8):
+                        if not(_la==5 or _la==6):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)

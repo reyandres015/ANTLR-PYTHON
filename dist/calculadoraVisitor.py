@@ -34,13 +34,13 @@ class calculadoraVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by calculadoraParser#MulDiv.
-    def visitMulDiv(self, ctx:calculadoraParser.MulDivContext):
+    # Visit a parse tree produced by calculadoraParser#AddSub.
+    def visitAddSub(self, ctx:calculadoraParser.AddSubContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by calculadoraParser#AddSub.
-    def visitAddSub(self, ctx:calculadoraParser.AddSubContext):
+    # Visit a parse tree produced by calculadoraParser#MulDiv.
+    def visitMulDiv(self, ctx:calculadoraParser.MulDivContext):
         return self.visitChildren(ctx)
 
 

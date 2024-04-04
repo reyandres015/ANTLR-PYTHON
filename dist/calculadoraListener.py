@@ -53,21 +53,21 @@ class calculadoraListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by calculadoraParser#MulDiv.
-    def enterMulDiv(self, ctx:calculadoraParser.MulDivContext):
-        pass
-
-    # Exit a parse tree produced by calculadoraParser#MulDiv.
-    def exitMulDiv(self, ctx:calculadoraParser.MulDivContext):
-        pass
-
-
     # Enter a parse tree produced by calculadoraParser#AddSub.
     def enterAddSub(self, ctx:calculadoraParser.AddSubContext):
         pass
 
     # Exit a parse tree produced by calculadoraParser#AddSub.
     def exitAddSub(self, ctx:calculadoraParser.AddSubContext):
+        pass
+
+
+    # Enter a parse tree produced by calculadoraParser#MulDiv.
+    def enterMulDiv(self, ctx:calculadoraParser.MulDivContext):
+        pass
+
+    # Exit a parse tree produced by calculadoraParser#MulDiv.
+    def exitMulDiv(self, ctx:calculadoraParser.MulDivContext):
         pass
 
 
