@@ -71,6 +71,15 @@ class calculadoraListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by calculadoraParser#unary.
+    def enterUnary(self, ctx:calculadoraParser.UnaryContext):
+        pass
+
+    # Exit a parse tree produced by calculadoraParser#unary.
+    def exitUnary(self, ctx:calculadoraParser.UnaryContext):
+        pass
+
+
     # Enter a parse tree produced by calculadoraParser#id.
     def enterId(self, ctx:calculadoraParser.IdContext):
         pass
@@ -95,6 +104,15 @@ class calculadoraListener(ParseTreeListener):
 
     # Exit a parse tree produced by calculadoraParser#int.
     def exitInt(self, ctx:calculadoraParser.IntContext):
+        pass
+
+
+    # Enter a parse tree produced by calculadoraParser#unaryExpr.
+    def enterUnaryExpr(self, ctx:calculadoraParser.UnaryExprContext):
+        pass
+
+    # Exit a parse tree produced by calculadoraParser#unaryExpr.
+    def exitUnaryExpr(self, ctx:calculadoraParser.UnaryExprContext):
         pass
 
 

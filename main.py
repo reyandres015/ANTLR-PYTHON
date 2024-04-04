@@ -52,6 +52,19 @@ class EvalVisitor(calculadoraVisitor):
         if var_name in self.memory:
             return self.memory[var_name]
         return 0
+    
+    def visitBool(self, ctx):
+        if ctx.getText() == 'true':
+            return True
+        else:
+            return False
+
+    def visitUnary(self, ctx):
+        if ctx.getChild(0).getText() == 'not':
+            return not self.visit(ctx.expr())
+        elif ctx.getChild(0).getText() == '-':
+            return -self.visit(ctx.expr())
+
 
 
 def main():

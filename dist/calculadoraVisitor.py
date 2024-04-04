@@ -44,6 +44,11 @@ class calculadoraVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by calculadoraParser#unary.
+    def visitUnary(self, ctx:calculadoraParser.UnaryContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by calculadoraParser#id.
     def visitId(self, ctx:calculadoraParser.IdContext):
         return self.visitChildren(ctx)
@@ -56,6 +61,11 @@ class calculadoraVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by calculadoraParser#int.
     def visitInt(self, ctx:calculadoraParser.IntContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by calculadoraParser#unaryExpr.
+    def visitUnaryExpr(self, ctx:calculadoraParser.UnaryExprContext):
         return self.visitChildren(ctx)
 
 
