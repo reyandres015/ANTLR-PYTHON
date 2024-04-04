@@ -32,3 +32,31 @@ expr:   ('!'+|'-') expr             # unary
     |   '(' expr ')'                # parens
     ; 
 ```
+
+## Operadores unarios
+! -> negación
+- -> operador cambio de signo
+++ Incremento
+-- Decrecimiento
+
+# Calculator Use
+
+## Step 1: Install python runtime
+
+```bash
+pip3 install antlr4-python3-runtime
+```
+
+## Step 2: use `.g4` to generate parser and lexer 
+
+```bash
+antlr4 -Dlanguage=Python3 Calculantlr.g4 -visitor -o dist 
+```
+Use `-visitor` to generate Visitor Class
+Use `-o` to specify output path.
+
+## Step3 Execute python file
+
+```bash
+python3 main.py
+```
