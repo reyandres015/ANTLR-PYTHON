@@ -34,12 +34,17 @@ expr:   ('!'+|'-') expr             # unary
 ```
 
 ## Operadores unarios
-! -> negación
-- -> operador cambio de signo
-++ Incremento
--- Decrecimiento
 
-# Calculator Use
+'!' -> negación
+
+'-' -> operador cambio de signo
+
+'++' Incremento
+
+'--' Decrecimiento
+
+
+# Calculator Execute
 
 ## Step 1: Install python runtime
 
@@ -55,7 +60,14 @@ antlr4 -Dlanguage=Python3 Calculantlr.g4 -visitor -o dist
 Use `-visitor` to generate Visitor Class
 Use `-o` to specify output path.
 
-## Step3 Execute python file
+## Step 3: Create ejemplo.txt
+
+En este archivo de texto están las operaciones que queremos realizar en la calculadora.
+```bash
+touch ejemplo.txt
+```
+
+## Step 4: Execute python file
 
 ```bash
 python3 main.py
