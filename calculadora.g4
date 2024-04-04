@@ -7,7 +7,9 @@ stat:   expr NEWLINE                # printExpr
     |   NEWLINE                     # blank
     ;
 
-expr:   ('!'+|'-') expr               # unary
+expr:   ('!'+|'-') expr             # unary
+    |   expr '++'                   # increment
+    |   expr '--'                   # decrement
     |   expr op=('+'|'-') expr      # AddSub
     |   expr op=('*'|'/') expr      # MulDiv
     |   FLOAT                       # float
@@ -17,6 +19,8 @@ expr:   ('!'+|'-') expr               # unary
     ;
 
 NOT: '!';
+INCREMENT: '++';
+DECREMENT: '--';
 
 MUL :   '*' ; // Asigna un nombre de token a '*' utilizado anteriormente en la gramática
 DIV :   '/' ;

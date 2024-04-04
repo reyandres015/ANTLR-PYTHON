@@ -71,6 +71,24 @@ class calculadoraListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by calculadoraParser#decrement.
+    def enterDecrement(self, ctx:calculadoraParser.DecrementContext):
+        pass
+
+    # Exit a parse tree produced by calculadoraParser#decrement.
+    def exitDecrement(self, ctx:calculadoraParser.DecrementContext):
+        pass
+
+
+    # Enter a parse tree produced by calculadoraParser#increment.
+    def enterIncrement(self, ctx:calculadoraParser.IncrementContext):
+        pass
+
+    # Exit a parse tree produced by calculadoraParser#increment.
+    def exitIncrement(self, ctx:calculadoraParser.IncrementContext):
+        pass
+
+
     # Enter a parse tree produced by calculadoraParser#unary.
     def enterUnary(self, ctx:calculadoraParser.UnaryContext):
         pass

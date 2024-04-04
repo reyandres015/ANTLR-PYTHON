@@ -2,7 +2,6 @@ from antlr4 import *
 from dist.calculadoraLexer import calculadoraLexer
 from dist.calculadoraParser import calculadoraParser
 from dist.calculadoraVisitor import calculadoraVisitor
-import math
 
 
 class EvalVisitor(calculadoraVisitor):
@@ -52,7 +51,7 @@ class EvalVisitor(calculadoraVisitor):
         if var_name in self.memory:
             return self.memory[var_name]
         return 0
-    
+
     def visitBool(self, ctx):
         if ctx.getText() == 'true':
             return True
@@ -65,9 +64,31 @@ class EvalVisitor(calculadoraVisitor):
         elif ctx.getChild(0).getText() == '-':
             return -self.visit(ctx.expr())
 
+    def visitIncrement(self, ctx):
+        return self.visit(ctx.expr()) + 1
+    def visitDecrement(self, ctx):
+        return self.visit(ctx.expr()) - 1
 
 
 def main():
+    # # Leer el contenido del archivo
+    # with open("ejemplo.txt", "r") as file:
+    #     contenido = file.read()
+
+    # # Invertir la cadena
+    # contenido_invertido = contenido[::-1]
+    # contenido_invertido = contenido_invertido.replace(" ", "")
+
+    # # Crear un archivo temporal con el contenido invertido
+    # with open("ejemplo_invertido.txt", "w") as file:
+    #     file.write(contenido_invertido)
+
+    # # Crear un FileStream con el archivo invertido
+    # input_stream_inverted = FileStream("ejemplo_invertido.txt")
+
+    # # Crear el lexer utilizando el archivo invertido
+    # lexer = calculadoraLexer(input_stream_inverted)
+
     input_stream = FileStream("ejemplo.txt")
     lexer = calculadoraLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
