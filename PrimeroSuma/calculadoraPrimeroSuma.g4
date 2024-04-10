@@ -1,4 +1,4 @@
-grammar calculadora;
+grammar calculadoraPrimeroSuma;
 
 prog:   stat+ ;
 

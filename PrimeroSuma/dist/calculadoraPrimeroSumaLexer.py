@@ -1,4 +1,4 @@
-# Generated from calculadora.g4 by ANTLR 4.13.1
+# Generated from calculadoraPrimeroSuma.g4 by ANTLR 4.13.1
 from antlr4 import *
 from io import StringIO
 import sys
@@ -43,7 +43,7 @@ def serializedATN():
         0,0,91,32,1,0,0,0,7,0,62,67,72,78,81,88,1,6,0,0
     ]
 
-class calculadoraLexer(Lexer):
+class calculadoraPrimeroSumaLexer(Lexer):
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
@@ -82,7 +82,7 @@ class calculadoraLexer(Lexer):
                   "MUL", "DIV", "ADD", "SUB", "TAN", "ID", "INT", "FLOAT", 
                   "NEWLINE", "WS" ]
 
-    grammarFileName = "calculadora.g4"
+    grammarFileName = "calculadoraPrimeroSuma.g4"
 
     def __init__(self, input=None, output:TextIO = sys.stdout):
         super().__init__(input, output)

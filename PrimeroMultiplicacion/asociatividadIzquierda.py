@@ -1,10 +1,10 @@
 from antlr4 import *
-from dist.calculadoraLexer import calculadoraLexer
-from dist.calculadoraParser import calculadoraParser
-from dist.calculadoraVisitor import calculadoraVisitor
+from dist.calculadoraPrimeroMultLexer import calculadoraPrimeroMultLexer
+from dist.calculadoraPrimeroMultParser import calculadoraPrimeroMultParser
+from dist.calculadoraPrimeroMultVisitor import calculadoraPrimeroMultVisitor
 
 
-class EvalVisitor(calculadoraVisitor):
+class EvalVisitor(calculadoraPrimeroMultVisitor):
     def __init__(self):
         self.memory = {}
 
@@ -26,7 +26,7 @@ class EvalVisitor(calculadoraVisitor):
     def visitMulDiv(self, ctx):
         left = self.visit(ctx.expr(0))
         right = self.visit(ctx.expr(1))
-        if ctx.op.type == calculadoraParser.MUL:
+        if ctx.op.type == calculadoraPrimeroMultParser.MUL:
             return left * right
         else:
             return left / right
@@ -34,10 +34,10 @@ class EvalVisitor(calculadoraVisitor):
     def visitAddSub(self, ctx):
         left = self.visit(ctx.expr(0))
         right = self.visit(ctx.expr(1))
-        if ctx.op.type == calculadoraParser.ADD:
-            return right + left
+        if ctx.op.type == calculadoraPrimeroMultParser.ADD:
+            return left + right
         else:
-            return right - left
+            return left - right
 
     def visitInt(self, ctx):
         return int(ctx.INT().getText())
@@ -71,9 +71,9 @@ class EvalVisitor(calculadoraVisitor):
 
 def main():
     input_stream = FileStream("ejemplo.txt")
-    lexer = calculadoraLexer(input_stream)
+    lexer = calculadoraPrimeroMultLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
-    parser = calculadoraParser(token_stream)
+    parser = calculadoraPrimeroMultParser(token_stream)
     tree = parser.prog()
 
     eval_visitor = EvalVisitor()

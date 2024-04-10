@@ -7,37 +7,8 @@
 
 Con la calculadora realizada en ANTLR y teniendo como lenguaje objetivo python, realizar las pruebas necesarias sobre: Asociatividad, Precedencia de Operadores, Operadores U-narios. Defina el tipo de datos bool para usar operadores U-narios.
 
-## Asociatividad
-
-La calculadora implementada puede realizar las operaciones con una asociatividad tanto por izquierda como por derecha. Para realizar el cambio simplemente hay que evaluar recursivamente primero el hijo derecho y luego el izquierdo, lo que cambia la asociatividad a derecha.
-
-#### Recursividad a la derecha
-
-```python
-def visitAddSub(self, ctx):
-        left = self.visit(ctx.expr(0))
-        right = self.visit(ctx.expr(1))
-        if ctx.op.type == calculadoraParser.ADD:
-            return right + left
-        else:
-            return right - left
-```
-
-#### Recursividad a la izquierda
-```python
-def visitAddSub(self, ctx):
-        left = self.visit(ctx.expr(0))
-        right = self.visit(ctx.expr(1))
-        if ctx.op.type == calculadoraParser.ADD:
-            return left + right
-        else:
-            return left - right
-```
-
-
-
 ## Precedencia de operadores
-En la calculadora implementada se puede cambiar la jerarquia de calculo de los operadores. Es decir, permitir que la suma se realice primero que la multiplicación. Esto se realiza simplemente cambiando el orden en que se declaran las reglas de las expresiones.
+La precedencia de operadores hace referencia a permitir que la suma se realice primero que la multiplicación o viceversa. Esto se realiza simplemente cambiando el orden en que se declaran las reglas de las expresiones.
 
 #### Primero suma
 ```antrl
@@ -63,6 +34,34 @@ expr:   ('!'+|'-') expr             # unary
     ; 
 ```
 
+## Asociatividad
+
+
+Para realizar el cambio simplemente se evaluo recursivamente primero el hijo derecho y luego el izquierdo, lo que cambia la asociatividad a derecha.
+
+#### Recursividad a la derecha
+
+```python
+def visitAddSub(self, ctx):
+        left = self.visit(ctx.expr(0))
+        right = self.visit(ctx.expr(1))
+        if ctx.op.type == calculadoraParser.ADD:
+            return right + left
+        else:
+            return right - left
+```
+
+#### Recursividad a la izquierda
+```python
+def visitAddSub(self, ctx):
+        left = self.visit(ctx.expr(0))
+        right = self.visit(ctx.expr(1))
+        if ctx.op.type == calculadoraParser.ADD:
+            return left + right
+        else:
+            return left - right
+```
+
 ## Operadores unarios
 
 '!' -> negación
@@ -76,6 +75,11 @@ expr:   ('!'+|'-') expr             # unary
 
 # How run this calculator?
 
+En este proyecto se dispuso de un directorio para cada opción de precedencia ('PrimeroMultiplicacion', 'PrimeroSuma')
+
+Para cada directorio existen dos archivos de python los cuales hacen referencia a las asociatividades (derecha, izquierda).
+
+
 ## Step 1: Install python runtime
 
 ```bash
@@ -83,27 +87,65 @@ pip3 install antlr4-python3-runtime
 ```
 
 ## Step 2: use `.g4` to generate parser and lexer 
-
+Nos dirijimos a la carpeta 'PrimeroMultiplicacion'
 ```bash
-antlr4 -Dlanguage=Python3 calculadora.g4 -visitor -o dist 
+cd PrimeroMultiplicacion
+```
+```bash
+antlr4 -Dlanguage=Python3 calculadoraPrimeroMult.g4 -visitor -o dist 
+```
+Nos devolvemos a la carpeta raiz del proyecto
+```bash
+cd ..
+```
+Nos dirijimos a la carpeta 'PrimeroSuma'
+```bash
+cd PrimeroSuma
+```
+```bash
+antlr4 -Dlanguage=Python3 calculadoraPrimeroSuma.g4 -visitor -o dist 
 ```
 Use `-visitor` to generate Visitor Class
 Use `-o` to specify output path.
 
-## Step 3: Create ejemplo.txt
+## Step 3: Modify ejemplo.txt
 
 En este archivo de texto están las operaciones que queremos realizar en la calculadora.
 ```bash
-touch ejemplo.txt
+nano ejemplo.txt
 ```
 
 ## Step 4: Execute python file
+Para seleccionar el archivo correcto a ejecutar se debe:
+
+1. Seleccionar la carpeta de acuerdo a la Precedencia seleccionada.
+
+#### Precedencia para la multiplicación
 
 ```bash
-python3 main.py
+cd PrimeroMultiplicacion
+```
+#### Precedencia para la suma
+
+```bash
+cd PrimeroSuma
+```
+2. Dependiendo de la asociativdad que se requiera se debe ejecutar un archivo de python diferente.
+
+#### Asociatividad por derecha
+
+```bash
+python3 asociatividadDerecha.py
+```
+#### Asociatividad por izquierda
+
+```bash
+python3 asociatividadIzquierda.py
 ```
 
-- Nicolas Bautista
-- Sara Romero
-- Angie Ruiz
-- Ricardo Rey
+# Integrantes
+
+- Nicolas Bautista 🧑‍💻
+- Sara Romero 🧑‍💻
+- Angie Ruiz 🧑‍💻
+- Ricardo Rey 🧑‍💻
